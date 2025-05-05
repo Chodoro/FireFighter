@@ -1,6 +1,12 @@
 from django.shortcuts import render
-from django.views.generic.list import ListView
-from fire.models import Locations, Incident, FireStation
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from fire.models import Locations, Incident, FireStation, Firefighters, FireTruck, WeatherConditions
+from django.urls import reverse_lazy
+
+
+from fire.forms import LocationsForm, IncidentForm, FireStationForm, FirefightersForm, FireTruckForm, WeatherConditionsForm
+
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 
 from django.db import connection
 from django.http import JsonResponse
@@ -215,3 +221,100 @@ def multipleBarbySeverity(request):
     return JsonResponse(result)
 
     
+
+
+
+# LOCATIONS CRUD VIEWS
+class LocationsCreateView(CreateView):
+    model = Locations
+    form_class = LocationsForm
+    template_name = 'locations_add.html'
+    success_url = reverse_lazy('locations-list')
+
+
+class LocationsUpdateView(UpdateView):
+    model = Locations
+    form_class = LocationsForm
+    template_name = 'locations_edit.html'
+    success_url = reverse_lazy('locations-list')
+
+
+class LocationsDeleteView(DeleteView):
+    model = Locations
+    template_name = 'locations_del.html'
+    success_url = reverse_lazy('locations-list')  # Changed to match actual list view name
+
+
+class LocationsListView(ListView):
+    model = Locations
+    template_name = 'locations_list.html'  # FIXED: should not use the delete template
+    context_object_name = 'locations'  # Optional: makes template cleaner
+
+# INCIDENT CRUD VIEWS
+class IncidentCreateView(CreateView):
+    model = Incident
+    form_class = IncidentForm
+    template_name = 'incident_add.html'
+    success_url = reverse_lazy('incident-list')
+
+class IncidentUpdateView(UpdateView):
+    model = Incident
+    form_class = IncidentForm
+    template_name = 'incident_edit.html'
+    success_url = reverse_lazy('incident-list')
+
+class IncidentDeleteView(DeleteView):
+    model = Incident
+    template_name = 'incident_del.html'
+    success_url = reverse_lazy('incident-list')  # Changed to match actual list view name
+
+class IncidentListView(ListView):
+    model = Incident
+    template_name = 'incident_list.html'  # FIXED: should not use the delete template
+    context_object_name = 'incidents'  # Optional: makes template cleaner
+
+# FIRE STATION CRUD VIEWS
+class FireStationListView(ListView):
+    model = FireStation
+    template_name = 'firestation_list.html'
+    context_object_name = 'stations'
+
+class FireStationCreateView(CreateView):
+    model = FireStation
+    form_class = FireStationForm
+    template_name = 'firestation_add.html'
+    success_url = reverse_lazy('firestation-list')
+
+class FireStationUpdateView(UpdateView):
+    model = FireStation
+    form_class = FireStationForm
+    template_name = 'firestation_edit.html'
+    success_url = reverse_lazy('firestation-list')
+
+class FireStationDeleteView(DeleteView):
+    model = FireStation
+    template_name = 'firestation_del.html'
+    success_url = reverse_lazy('firestation-list')
+
+# FIRE FIGHTERS CRUD VIEWS
+class FirefighterListView(ListView):
+    model = Firefighters
+    template_name = 'firefighter_list.html'
+    context_object_name = 'firefighters'
+
+class FirefighterCreateView(CreateView):
+    model = Firefighters
+    form_class = FirefightersForm
+    template_name = 'firefighter_add.html'
+    success_url = reverse_lazy('firefighter-list')
+
+class FirefighterUpdateView(UpdateView):
+    model = Firefighters
+    form_class = FirefightersForm
+    template_name = 'firefighter_edit.html'
+    success_url = reverse_lazy('firefighter-list')
+
+class FirefighterDeleteView(DeleteView):
+    model = Firefighters
+    template_name = 'firefighter_del.html'
+    success_url = reverse_lazy('firefighter-list')

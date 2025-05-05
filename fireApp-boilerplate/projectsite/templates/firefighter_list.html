@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Firefighters</h2>
+    <a href="{% url 'firefighter-add' %}" class="btn btn-primary mb-3">Add New Firefighter</a>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Rank</th>
+                <th>Experience</th>
+                <th>Station</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for f in firefighters %}
+            <tr>
+                <td>{{ f.id }}</td>
+                <td>{{ f.name }}</td>
+                <td>{{ f.rank }}</td>
+                <td>{{ f.experience_level }}</td>
+                <td>{{ f.station.name }}</td>
+                <td>
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'firefighter-edit' f.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'firefighter-delete' f.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">No firefighters found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

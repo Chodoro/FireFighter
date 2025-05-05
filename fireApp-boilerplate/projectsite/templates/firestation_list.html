@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Fire Stations</h2>
+    <a href="{% url 'firestation-add' %}" class="btn btn-primary mb-3">Add New Fire Station</a>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>City</th>
+                <th>Country</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for station in stations %}
+            <tr>
+                <td>{{ station.id }}</td>
+                <td>{{ station.name }}</td>
+                <td>{{ station.city }}</td>
+                <td>{{ station.country }}</td>
+                <td>
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'firestation-edit' station.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'firestation-delete' station.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="5" class="text-center">No fire stations found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

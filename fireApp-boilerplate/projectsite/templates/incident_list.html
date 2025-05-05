@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Incidents</h2>
+    <a href="{% url 'incident-add' %}" class="btn btn-primary mb-3">Add New Incident</a>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Description</th>
+                <th>Date & Time</th>
+                <th>Location</th>
+                <th>Severity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for incident in incidents %}
+            <tr>
+                <td>{{ incident.id }}</td>
+                <td>{{ incident.description }}</td>
+                <td>{{ incident.date_time|date:"Y-m-d H:i" }}</td>
+                <td>{{ incident.location.name }}</td>
+                <td>{{ incident.severity_level }}</td>
+                <td>
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'incident-update' incident.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'incident-delete' incident.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">No incidents found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
