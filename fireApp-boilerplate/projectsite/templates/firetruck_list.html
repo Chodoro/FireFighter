@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>FireTruck List</h2>
+    <a href="{% url 'firetruck-add' %}" class="btn btn-primary mb-3">Add FireTruck</a>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Truck Number</th>
+                <th>Model</th>
+                <th>Capacity</th>
+                <th>Station</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for truck in firetrucks %}
+            <tr>
+                <td>{{ truck.id }}</td>
+                <td>{{ truck.truck_number }}</td>
+                <td>{{ truck.model }}</td>
+                <td>{{ truck.capacity }}</td>
+                <td>{{ truck.station.name }}</td>
+                <td>
+                    <a href="{% url 'firetruck-edit' truck.pk %}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{% url 'firetruck-delete' truck.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="6" class="text-center">No firetrucks found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

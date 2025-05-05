@@ -318,3 +318,49 @@ class FirefighterDeleteView(DeleteView):
     model = Firefighters
     template_name = 'firefighter_del.html'
     success_url = reverse_lazy('firefighter-list')
+
+# FIRE TRUCK CRUD VIEWS
+class FireTruckListView(ListView):
+    model = FireTruck
+    template_name = 'firetruck_list.html'
+    context_object_name = 'firetrucks'
+
+class FireTruckCreateView(CreateView):
+    model = FireTruck
+    form_class = FireTruckForm
+    template_name = 'firetruck_add.html'
+    success_url = reverse_lazy('firetruck-list')
+
+class FireTruckUpdateView(UpdateView):
+    model = FireTruck
+    form_class = FireTruckForm
+    template_name = 'firetruck_edit.html'
+    success_url = reverse_lazy('firetruck-list')
+
+class FireTruckDeleteView(DeleteView):
+    model = FireTruck
+    template_name = 'firetruck_del.html'
+    success_url = reverse_lazy('firetruck-list')
+
+# WEATHER CONDITIONS CRUD VIEWS
+class WeatherConditionsListView(ListView):
+    model = WeatherConditions
+    template_name = 'weatherconditions_list.html'
+    context_object_name = 'weather_conditions'
+
+class WeatherConditionsCreateView(CreateView):
+    model = WeatherConditions
+    form_class = WeatherConditionsForm
+    template_name = 'weatherconditions_add.html'
+    success_url = reverse_lazy('weatherconditions-list')
+
+class WeatherConditionsUpdateView(UpdateView):
+    model = WeatherConditions
+    form_class = WeatherConditionsForm
+    template_name = 'weatherconditions_edit.html'
+    success_url = reverse_lazy('weatherconditions-list')
+
+class WeatherConditionsDeleteView(DeleteView):
+    model = WeatherConditions
+    template_name = 'weatherconditions_del.html'
+    success_url = reverse_lazy('weatherconditions-list')

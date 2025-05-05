@@ -15,7 +15,17 @@ from fire.views import (
     FirefighterUpdateView, 
     FirefighterDeleteView
 )
+from fire.views import (
+    FireTruckListView, FireTruckCreateView,
+    FireTruckUpdateView, FireTruckDeleteView
+)
 
+from fire.views import (
+    WeatherConditionsListView,
+    WeatherConditionsCreateView,
+    WeatherConditionsUpdateView,
+    WeatherConditionsDeleteView
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -54,4 +64,15 @@ urlpatterns = [
     path('firefighter_list/<int:pk>/', FirefighterUpdateView.as_view(), name='firefighter-edit'),
     path('firefighter_list/<int:pk>/delete/', FirefighterDeleteView.as_view(), name='firefighter-delete'),
 
+    #CRUD for fire trucks
+    path('firetrucks/', FireTruckListView.as_view(), name='firetruck-list'),
+    path('firetrucks/add/', FireTruckCreateView.as_view(), name='firetruck-add'),
+    path('firetrucks/<int:pk>/edit/', FireTruckUpdateView.as_view(), name='firetruck-edit'),
+    path('firetrucks/<int:pk>/delete/', FireTruckDeleteView.as_view(), name='firetruck-delete'),
+
+    #CRUD for Weather Conditions
+    path('weatherconditions/', WeatherConditionsListView.as_view(), name='weatherconditions-list'),
+    path('weatherconditions/add/', WeatherConditionsCreateView.as_view(), name='weatherconditions-add'),
+    path('weatherconditions/<int:pk>/edit/', WeatherConditionsUpdateView.as_view(), name='weatherconditions-edit'),
+    path('weatherconditions/<int:pk>/delete/', WeatherConditionsDeleteView.as_view(), name='weatherconditions-delete'),
 ]
