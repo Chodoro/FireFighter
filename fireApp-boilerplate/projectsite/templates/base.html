@@ -140,7 +140,7 @@
                 </a>
                 <div class="collapse" id="base">
                   <ul class="nav nav-collapse">
-                    <li>
+                    <li> <!--teleport2--> 
                       <a href="{% url 'locations-list' %}">
                         <span class="sub-item">Locations</span>
                       </a>
@@ -219,11 +219,49 @@
                   </ul>
                 </div>
               </li>
+
+
+              <!--teleport-->
               <li class="nav-item">
-                <a href="widgets.html">
+                <a href="{% url 'locations-list' %}">
+                  <i class="fas fa-solid fa-location-arrow"></i>
+                  <p>LOCATIONS</p>
+                   
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'incident-list' %}">
+                  <i class="fas fa-solid fa-fire"></i>
+                  <p>INCIDENT</p>
+                  
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'firestation-list' %}">
+                  <i class="fas fa-solid fa-fire-extinguisher"></i>
+                  <p>FIRESTATION</p>
+                   
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'firefighter-list' %}">
                   <i class="fas fa-desktop"></i>
-                  <p>Widgets</p>
-                  <span class="badge badge-success">4</span>
+                  <p>FIREFIGHTER</p>
+                  
+                </a>
+              </li>       
+              <li class="nav-item">
+                <a href="{% url 'firetruck-list' %}">
+                  <i class="fas fa-solid fa-truck"></i>
+                  <p>FIRETRUCK</p>
+                   
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'weatherconditions-list' %}">
+                  <i class="fas fa-solid fa-cloud"></i>
+                  <p>WEATHERCONDITIONS</p>
+                   
                 </a>
               </li>
               
